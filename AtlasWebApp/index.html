@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Akenland Interactive Map</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="style/layout.css">
+</head>
+
+<body>
+
+    <!-- The 3D map. -->
+    <div id="map">
+        <script type="text/javascript" src="three/three.js"></script>
+        <script type="text/javascript" src="three/OrbitControls.js"></script>
+        <script type="text/javascript" src="map.js"></script>
+    </div>
+
+    <!-- Sidebar for apps. Hidden by default. -->
+    <div id="sidebar">
+        <div>
+            <h1 id="sidebar-title">Sidebar app</h1>
+            <button id="sidebar-close-button" onclick="closeSidebar()">Close</button>
+        </div>
+        <script type="text/javascript" src="sidebar.js"></script>
+    </div>
+
+    <!-- App picker for the sidebar. Shown when sidebar is hidden. -->
+    <nav id="sidebar-menu">
+        <button onclick="openSidebar()">Online Players</button>
+        <button onclick="openSidebar()">Map Options</button>
+        <button onclick="openSidebar()">Draw</button>
+        <button onclick="openSidebar()">Journal</button>
+        <button onclick="openSidebar()">Console</button>
+        <button onclick="openSidebar()">WorldEdit</button>
+        <button onclick="openSidebar()">CoreProtect</button>
+        <button onclick="openSidebar()">File Editor</button>
+    </nav>
+
+    <!-- Chat box. -->
+    <div id="chat">
+        <div id="chat-history">
+
+        </div>
+        <input id="chat-input" type="text" placeholder="Type here to chat">
+        <script type="text/javascript" src="websocket_client.js"></script>
+    </div>
+
+</body>
+
+</html>
