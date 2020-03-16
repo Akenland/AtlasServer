@@ -30,7 +30,21 @@ h1 {
     display: block;
 }
 
+#map-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    padding: 12px;
+}
+
+#map-controls p {
+    margin: 0;
+}
+
 #sidebar {
+    display: none;
+
     position: fixed;
     top: 0;
     right: 0;
@@ -42,13 +56,26 @@ h1 {
 
     z-index: 100;
 
-    background-color: rgba(53, 43, 38, 80%);
+    background-color: rgba(53, 43, 38, 0.8);
+}
+
+button, input, label {
+    border: none;
+
+    padding: 6px;
+
+    font-size: 14px;
+
+    color: #fff;
+    background: transparent;
 }
 
 button {
-    background: transparent;
-    color: #fff;
-    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: rgba(53, 43, 38, 0.8);
 }
 
 #sidebar-close-button {
@@ -58,10 +85,16 @@ button {
 
     margin: 12px;
     padding: 12px;
+
+    background: transparent;
+}
+
+#sidebar-content {
+    padding: 12px;
 }
 
 #sidebar-menu {
-    display: none;
+    display: unset;
 
     position: fixed;
     top: 0;
@@ -80,6 +113,8 @@ button {
     right: 0;
 
     padding: 12px;
+
+    background: transparent;
 }
 
 #chat {
@@ -92,7 +127,7 @@ button {
 
     z-index: 10;
 
-    background-color: rgba(53, 43, 38, 80%);
+    background-color: rgba(53, 43, 38, 0.8);
 }
 
 #chat-history {
@@ -116,5 +151,11 @@ button {
 
     border: none;
 
-    background-color: rgba(78, 60, 45, 80%);
+    background-color: rgba(78, 60, 45, 0.8);
+}
+
+@media (max-width: 720px) {
+    #chat, #chat-input {
+        width: 100%;
+    }
 }

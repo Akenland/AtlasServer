@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div>
+        <h2>World</h2>
+        <label for="world-name-input">World name:</label>
+        <input type="text" id="world-name-input" value="galvin_flat_14"></input>
+        <button type="button" id="world-name-submit" onclick="setWorld(document.getElementById('world-name-input').value)">Change world</button>
+    </div>
+
+    <div>
+        <h2>Blocks</h2>
+        <label>XYZ:</label>
+        <input type="number" id="block-x-input"></input>
+        <input type="number" id="block-y-input"></input>
+        <input type="number" id="block-z-input"></input>
+        <label for="block-material-input">Material:</label>
+        <input type="text" id="block-material-input"></input>
+        <button onclick="placeBlock(document.getElementById('block-x-input').value, document.getElementById('block-y-input').value, document.getElementById('block-z-input').value, document.getElementById('block-material-input').value)">Place block</button>
+    </div>
+
+    <div>
+        <h2>Sun Position</h2>
+        <label>XYZ:</label>
+        <input type="number" id="sun-x-input" value="8"></input>
+        <input type="number" id="sun-y-input" value="255"></input>
+        <input type="number" id="sun-z-input" value="16"></input>
+        <button onclick="sunLight.position.set(document.getElementById('sun-x-input').value, document.getElementById('sun-y-input').value, document.getElementById('sun-z-input').value)">Move sun</button>
+    </div>
+</body>
+
+</html>

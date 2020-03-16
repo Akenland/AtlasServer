@@ -1,3 +1,5 @@
+"use strict";
+
 /** Server host name. */
 const hostname = "0.0.0.0";
 /** Server port. */
@@ -5,15 +7,20 @@ const port = 1337;
 
 
 // websocket and http servers
-var http = require("http");
-var webSocketServer = require("websocket").server;
-var fs = require("fs");
+const http = require("https");
+const webSocketServer = require("websocket").server;
+const fs = require("fs");
+
+const httpsOptions = {
+    key: fs.readFileSync("https\\map.akenland.com.key"),
+    cert: fs.readFileSync("https\\map.akenland.com.pem")
+}
 
 
 /** Latest 100 messages. */
 //var history = [];
 /** Current connected clients. */
-var clients = [];
+let clients = [];
 
 
 /**
@@ -31,9 +38,14 @@ function htmlEntities(str) {
 /**
  * HTTP Server
  */
-var httpServer = http.createServer(function (request, response) {
-    var path = request.url.replace("/", "\\");
+const httpServer = http.createServer(httpsOptions, function (request, response) {
+    let path = request.url.replace("/", "\\");
     //console.log(path); // DEBUG - log the path of the file that will be returned
+
+    if(path.length<=1){
+        path = "\\index.html";
+    }
+
     fs.readFile("AtlasWebApp" + path, function (err, data) {
         if (typeof (data) !== "undefined") {
             response.writeHead(200);

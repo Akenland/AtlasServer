@@ -1,12 +1,11 @@
+"use strict";
+
 /** The websocket URL (endpoint) for the Atlas server. Default "ws://localhost:8080". */
-const wsUrl = "ws://KYLEN:1337";
+const wsUrl = "wss://map.akenland.com";
 
 /** The world to render. All other world data will be ignored. */
-let worldName = "galvin_flat_14";
+//let worldName = "galvin_flat_14";
 
-
-/** The chat history. */
-const chatHistory = document.getElementById("chat-history");
 
 /** The websocket connection. */
 const connection = new WebSocket(wsUrl);
@@ -22,6 +21,8 @@ let userData = {
  */
 connection.onopen = function () {
     logMessage("Connected to Atlas server.");
+
+    document.getElementById("location-name").innerHTML = "World " + worldName;
 };
 
 /**
@@ -59,7 +60,7 @@ connection.onmessage = function (message) {
 
         case "block_place":
             if (json.world === worldName) {
-                placeBlock(json.material, json.x, json.y, json.z);
+                placeBlock(json.x, json.y, json.z, json.material);
             }
             break;
 
@@ -77,42 +78,8 @@ connection.onmessage = function (message) {
 
 
 /**
- * Logs a message to the chat history.
- * @param {string} message
- */
-function displayChat(message) {
-    let paragraph = document.createElement("p");
-    let node = document.createTextNode(message);
-    paragraph.appendChild(node);
-
-    chatHistory.appendChild(paragraph);
-}
-
-/**
- * Logs a message to the chat history and console.
- * @param {string} message
- */
-function logMessage(message) {
-    console.log(message);
-    displayChat(message);
-}
-
-
-/**
  * Sends a message to the websocket server.
  */
-function sendMessage(message) {
+function sendWsMessage(message) {
     connection.send(message);
-}
-
-/**
- * Sends a chat message.
- * @param {string} message
- */
-function sendChatMessage(message) {
-    let data = {
-        type: "map_chat",
-        message: "&7<" + userData.displayName + ">&r " + message
-    };
-    sendMessage(data);
 }
